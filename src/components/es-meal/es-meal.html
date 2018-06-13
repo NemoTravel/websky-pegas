@@ -1,3 +1,90 @@
+<!-- item__i -->
+<div class="item__i mobileHide item__i_test" style="display: none">
+  <!-- top -->
+  <div class="top">
+
+    <!-- icon -->
+    <div class="icon" ng-class="{ not: (!vm.service.editablePrice && !vm.service.active) }">
+      <span style="display: none">
+        {{ vm.service.editablePrice }}
+      </span>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="29" viewBox="0 0 41 29">
+        <g>
+          <g transform="translate(-943 -1951)">
+            <image width="41" height="29" transform="translate(943 1951)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAdCAYAAAA3i0VNAAACAElEQVRYR+2YPWgUURSFvyPxB9SksNAujaD4BxYWYidYCJZCwEQMBhJSKVhFIaKgVoKWBgwRY0CwDDaCnaSwCMQfFNKkM4VgTASTSI68ZbOsk9nszO5MdgpvO/ee88197743jMgobJ8CHgCHgS/AkKT3WcgrCxHbncBHYE+V3hJwTNJcsx5ZQd4E7sXA3JJ0vyiQd4DhGJi7km63FNJ2G3AS6AJuxMA8BF4C05L+NAqberltbwMuAN3AeWBvAvNF4DUwAUxKWktQU0lJDFmGuwSE5TuYxiSSOwuE7TGRFDYRpO1DwFPgTBNw0dJ3QJ+kr/U060LavgiMAbvriTXw/BfQK+nVZrWbQtq+BjxqwDxtyXVJj2sV1YS03Q88SevWRP6ApJG4+lhI22eBN0CY5K2KMPHnJL2NGm6AtL0P+ATs3yq6Kp954Kik79XecZBhiq+2AHDdclRSX01I20fKHwp1pz7Hl3D5w+Tzusc/MLafAz05AiSVHpd0eQOk7Q7gG7ArqVKOeb+BA5IWgkelk7bDXTyeo3Fa6R5JL6KQ4Va5klYpx/xnknqjkDPA8RxN00p/kHQiCrkCbE+rlGP+qqQdFUjb7UBpkxYsOiT9LA2O7Z3A6YIBBpwpScutPLQT90S2B4HQyaLGcoD8AYSDvKix8B8yo6UpdTL8Bin0cv8FInOaKdy3fMsAAAAASUVORK5CYII="/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <!-- END icon -->
+
+    <!-- name -->
+    <div class="name">
+      <h2 class="name__heading">
+        {{ 'web.extraServices.meal.header' | aliasStatic}}
+
+        <span class="name__min-price" ng-if="vm.service.minPrice">
+          {{ 'web.extraServices.minPrice' | aliasStatic}}
+          <span ng-bind-html="{ value: vm.service.minPrice.price, currency: vm.service.minPrice.currency } | price"></span>
+        </span>
+      </h2>
+
+      <p class="name__description">
+        {{ 'web.extraServices.meal.desc' | aliasStatic}}
+      </p>
+    </div>
+    <!-- END name -->
+
+    <!-- info -->
+    <div class="info" ng-if="vm.service.editablePrice">
+      <a class="info__close-icon" ng-if="!vm.service.active">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="20" viewBox="0 0 19 20"><g><g transform="translate(-1496 -891)"><image width="19" height="20" transform="translate(1496 891)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAACxUlEQVQ4T5WUTUhUURTH/+fNJE9qpiAKIyjokz5p0cJFBLOQeec1FhFpQZsgKAKxlUQSjbWQggoiTBKKatWjGMrex6g19AEK2aZV0MbaRVaQCILvzok7zJPxMaLd5b3/+7vn438PYQkrn88b+Xy+vJiU6glc191GRKeIKAdgF4AGADMAPhPRKxF5wswT8bvzYKVSacXMzMx1AG0icl9EXiYSia+WZf0uFovLlVL7ABwlotMAHpimeTmTyehHKmsONjg4uD6ZTHoAxpRSF3O53J+F0ioWi2uVUreJaJOIHLZt++cczPO8NIBxIupn5luL1SY6933/GgA2TfOAjrASme/7AwDKzHx2qaAa4FMA35i5i3zf3w7gnYhstW37bxX+GMAjZn4dhwdBcARA1rKs8/rM87w1RPQlDMO9FARBj4gsY+ZL0UXXdQ8ahvEcwIlaoAbpxhiGYWez2U+RPgiCPhH5qiMbB9DBzKO1UVSBzwCc1MCFQNVMbBG5oGGTIrIj6kg9IBHdE5Fz8Ygi7dDQ0FallKdhwsx1zVt99QqAPIBOZr5Tr0GFQmGVaZoTGjYtIuui4teKo9SI6KqIaGgl5TjQdd2NhmF80LBREem2bftNPVCUWryGMe0xETlDnud1A2iybbujxjuHAQzEaxQBiajdsqxSjV5baYyGh4c3hGH4UUR2R03wff+uYRgPa9sfs01Om1TvVe+Ph2G4M/oBNwBsZOb2//kBjuMkUqmUC+AtM/dWYI7jNKbT6ZKIvLcsq4uIZDGonnHNzc39IrLZNM1sJpMJ5ywxMjKyenZ2tkBEvxKJRGdLS8v3hYBBEGwpl8t9RKREpD1ywjx/OY7TkEqleojonIi8APBCKfUlmUz+IKKV5XJ5f3WesYjcnJqa6m1ra1PRowtN2iYiOk5EhwDsAdAIYFpPWgAvwzB83traOhmP/B+Al3B/w3iTlgAAAABJRU5ErkJggg=="/></g></g></svg>
+      </a>
+      Всего к оплате: <span ng-bind-html="{ value: vm.service.editablePrice.price, currency: vm.service.editablePrice.currency } | price"></span>
+    </div>
+    <!-- END info -->
+
+    <!-- buttons -->
+    <div class="buttons">
+      <a href="" class="toggle" ng-if="vm.service.active" ng-click="vm.service.active = !vm.service.active">
+        Показать
+      </a>
+
+      <a href="" class="btn" ng-click="vm.switchService()" ng-if="!vm.service.active && !vm.service.editablePrice">
+        Выбрать питание
+      </a>
+
+      <a href="" class="btn done" ng-click="vm.switchService()" ng-if="!vm.service.active && vm.service.editablePrice">
+        <span class="btn__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="8" viewBox="0 0 11 8"><g><g transform="translate(-1909 -2063)"><image width="11" height="8" transform="translate(1909 2063)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAAlUlEQVQoU2NkIAK0n9eN/s/A2MxISC1U4XxGhv+JeBWDFTIyzmH4xxBeZXRpE07FbRf00xkY/k+AKQS5gLHtvN5DRob/VZWGl5fCnNR2Ti+TgZFhAsN/hlCQiTBxxrZzen4MTAwrGf//TwFpwKUQbDKIAGtgZFjN8J9hPQMjQyC6iXCTkawG2TCTkYExvtLg4i5soQQAlE88SKn3kiMAAAAASUVORK5CYII="/></g></g>
+          </svg>
+        </span>
+        Выбрано
+      </a>
+
+    </div>
+    <!-- END buttons -->
+  </div>
+  <!-- END top -->
+
+  <!-- drop -->
+  <div class="drop" ng-class="{ active: vm.service.active, show_js: vm.service.active }">
+    <div class="drop__i">
+      лорывфлоарлфырва
+      фываолрфлывафыварф
+      ваорфывдафыорва
+      фываолфылвоарлфыова
+      фыолварфлоывралофрыв
+      афлыоварлфорва
+      фырвалофырвалофрылваорф
+      варфлыовралфрыва
+    </div>
+  </div>
+  <!-- END drop -->
+
+</div>
+<!-- END item__i -->
+
 <div class="item__i mobileHide">
     <div class="top">
         <div class="top__i">
