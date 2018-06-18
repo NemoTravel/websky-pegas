@@ -82,7 +82,7 @@
     line-height: 14px;
     font-weight: 400;
     padding: 10px 15px;
-    background: #fff;
+    background: transparent;
     color: #4dca00;
     margin-left: 30px;
 }
@@ -279,7 +279,7 @@
 .food {
     display: flex;
     margin-top: 50px;
-    padding: 0 30px;
+    padding: 0 18px;
 }
 
 .food__passengers {
@@ -310,6 +310,7 @@
     align-items: center;
     color: #000;
     padding-right: 30px;
+    padding-left: 5px;
 }
 
 .food__name-passenger:before {
@@ -389,9 +390,99 @@
     display: inline-block;
 }
 
-/* ens icons */
+/* end icons */
 
 
+.food .list {
+	background: #e9e9e6;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+.food .list__i {
+	padding: 20px 0;
+}
+
+.food .list__i wrap {
+	display: flex;
+    flex-wrap: wrap;
+    padding: 0 30px;
+}
+
+.food .item {
+    width: 45%;
+	padding: 0;
+    float: none;
+    margin-bottom: 0;
+    margin: 0 2.5% 15px 2.5%;
+    color: #000;
+}
+
+.food .img {
+	position: relative;
+}
+
+.food__counter {
+    position: absolute;
+    color: #fff;
+    background-image: linear-gradient(to top, #84cd2b 0%, #5abf3f 100%);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    right: -10px;
+    top: -10px;
+    text-align: center;
+    line-height: 25px;
+}
+
+.food .img img {
+	height: 160px;
+}
+
+.food .description {
+    margin-top: 10px;
+    min-height: 55px;
+}
+
+.food .price {
+	font-size: 22px;
+    margin-top: 10px;
+}
+
+.food .btn {
+	border: 1px solid #4dca00;
+    border-radius: 3px;
+    font-size: 16px;
+    line-height: 14px;
+    font-weight: 400;
+    padding: 12px 30px;
+    background: transparent;
+    color: #4dca00;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.food .btn.selected {
+	background-image: linear-gradient(to top, #84cd2b 0%, #5abf3f 100%);
+    color: #fff;
+    border: 1px solid transparent;
+}
+
+
+.food .img,
+.food .name,
+.food .description
+{
+	padding: 0;
+}
+
+.checkoutServices__i .customScroll_height .mCSB_scrollTools {
+	right: -100px;
+}
+
+.checkoutServices__i .customScroll_height {
+	max-height: 700px;
+}
 
 /* END FOOD */
 
