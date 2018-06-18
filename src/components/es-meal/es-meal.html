@@ -209,6 +209,7 @@
           <!-- group -->
           <div class="group" ng-if=" vm.service.subgroups.length > 1 ">
             <div class="group__item"
+                 ng-init="vm.mealMenuSubgroup ? '0' : vm.mealMenuSubgroup"
                  ng-repeat="(subgroupNum, subgroupCode) in vm.service.subgroups"
                  ng-class="{ active: vm.mealMenuSubgroup === subgroupNum }"
                  ng-click="vm.mealMenuSubgroup = subgroupNum">
@@ -226,47 +227,49 @@
 
           <!--  -->
           <div class="list customScroll_height customScroll_js" custom-scroll>
-              <div class="list__i isotopeGrid">
+            <div class="list__i isotopeGrid">
 
-                  <wrap ng-repeat="(subgroupNum, subgroup) in vm.mealMenu">
-                      <div ng-repeat="mealItem in subgroup"
-                          ng-if=" vm.mealMenuSubgroup === subgroupNum || vm.mealMenuSubgroup === false "
-                          ng-class="{ active: mealItem.active, control_disabled: vm.locked }"
-                          class="item">
-                          <div class="food_wrap">
-                              <div class="img">
-                                  <img ng-src="{{vm.mealImagesPath}}/{{ mealItem.serviceType }}-{{ mealItem.rfisc }}.jpg" alt=""/>
-                              </div>
-                              <div class="food_info">
+              <wrap ng-repeat="(subgroupNum, subgroup) in vm.mealMenu">
+                <div ng-repeat="mealItem in subgroup"
+                    ng-if=" vm.mealMenuSubgroup === subgroupNum || vm.mealMenuSubgroup === false "
+                    ng-class="{ active: mealItem.alreadySelectedCount > 0 }"
+                    class="item">
 
-                                  <div class="name">
-                                      <p>{{ mealItem.title }}</p>
-                                  </div>
-
-                                  <div class="description">
-                                      <a ng-if="vm.hasAlias('web.extraServices.meal.ingredientsDescriptionContent.' + mealItem.serviceType + '.' + mealItem.rfisc)" href fancybox="popupAlias" class="link link--ingredientsDescription" data-popup-alias="web.extraServices.meal.ingredientsDescriptionContent.{{mealItem.serviceType}}.{{mealItem.rfisc}}">
-                                          {{ 'web.extraServices.meal.ingredientsDescriptionLabel' | aliasStatic }}
-                                      </a>
-                                      <p ng-bind-html="mealItem.description"></p>
-                                  </div>
-
-                                  <p class="price" ng-bind-html="{ value: mealItem.price, currency: mealItem.currency } | price"></p>
-
-                                  <div class="extra-service-picker">
-                                      <service-picker count="mealItem.alreadySelectedCount"
-                                          limit="mealItem.limit"
-                                          locked="vm.locked"
-                                          on-increase="vm.mealCountChangeHandler(subgroupNum, mealItem, +1)"
-                                          on-decrease="vm.mealCountChangeHandler(subgroupNum, mealItem, -1)">
-                                      </service-picker>
-                                  </div>
-
-                              </div>
-                          </div>
+                  <div class="food_wrap">
+                    <div class="img">
+                      <div class="food__counter" ng-if="mealItem.alreadySelectedCount > 0">
+                        <span class="btn__icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="8" viewBox="0 0 11 8"><g><g transform="translate(-1909 -2063)"><image width="11" height="8" transform="translate(1909 2063)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAAlUlEQVQoU2NkIAK0n9eN/s/A2MxISC1U4XxGhv+JeBWDFTIyzmH4xxBeZXRpE07FbRf00xkY/k+AKQS5gLHtvN5DRob/VZWGl5fCnNR2Ti+TgZFhAsN/hlCQiTBxxrZzen4MTAwrGf//TwFpwKUQbDKIAGtgZFjN8J9hPQMjQyC6iXCTkawG2TCTkYExvtLg4i5soQQAlE88SKn3kiMAAAAASUVORK5CYII="/></g></g>
+                          </svg>
+                        </span>
                       </div>
-                  </wrap>
+                        <img ng-src="{{vm.mealImagesPath}}/{{ mealItem.serviceType }}-{{ mealItem.rfisc }}.jpg" alt=""/>
+                    </div>
 
-              </div>
+                    <p class="description" ng-bind-html="mealItem.description"></p>
+
+                    <p class="price" ng-bind-html="{ value: mealItem.price, currency: mealItem.currency } | price"></p>
+
+                    <a href=""
+                       class="btn"
+                       ng-click="vm.mealCountChangeHandler(subgroupNum, mealItem, +1)"
+                       ng-class="{ selected: mealItem.alreadySelectedCount > 0}">
+
+                      <span class="not-selected" ng-if="mealItem.alreadySelectedCount === 0">
+                        Выбрать
+                      </span>
+
+                      <span class="selected" ng-if="mealItem.alreadySelectedCount > 0">
+                        Добавлено в заказ
+                      </span>
+
+                    </a>
+
+                  </div>
+                </div>
+              </wrap>
+
+            </div>
           </div>
           <!--  -->
 
