@@ -1,13 +1,10 @@
 <!-- item__i -->
-<div class="item__i mobileHide item__i_test" style="display: none">
+<div class="item__i mobileHide item__i_test">
   <!-- top -->
   <div class="top">
 
     <!-- icon -->
     <div class="icon" ng-class="{ not: (!vm.service.editablePrice && !vm.service.active) }">
-      <span style="display: none">
-        {{ vm.service.editablePrice }}
-      </span>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="29" viewBox="0 0 41 29">
         <g>
           <g transform="translate(-943 -1951)">
@@ -61,7 +58,10 @@
 
       <a href="" class="btn done" ng-click="vm.switchService()" ng-if="!vm.service.active && vm.service.editablePrice">
         <span class="btn__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="8" viewBox="0 0 11 8"><g><g transform="translate(-1909 -2063)"><image width="11" height="8" transform="translate(1909 2063)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAAlUlEQVQoU2NkIAK0n9eN/s/A2MxISC1U4XxGhv+JeBWDFTIyzmH4xxBeZXRpE07FbRf00xkY/k+AKQS5gLHtvN5DRob/VZWGl5fCnNR2Ti+TgZFhAsN/hlCQiTBxxrZzen4MTAwrGf//TwFpwKUQbDKIAGtgZFjN8J9hPQMjQyC6iXCTkawG2TCTkYExvtLg4i5soQQAlE88SKn3kiMAAAAASUVORK5CYII="/></g></g>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 24" version="1.1" width="15px" height="12px">
+            <g>
+              <path d="M 22.566406 4.730469 L 20.773438 3.511719 C 20.277344 3.175781 19.597656 3.304688 19.265625 3.796875 L 10.476563 16.757813 L 6.4375 12.71875 C 6.015625 12.296875 5.328125 12.296875 4.90625 12.71875 L 3.371094 14.253906 C 2.949219 14.675781 2.949219 15.363281 3.371094 15.789063 L 9.582031 22 C 9.929688 22.347656 10.476563 22.613281 10.96875 22.613281 C 11.460938 22.613281 11.957031 22.304688 12.277344 21.839844 L 22.855469 6.234375 C 23.191406 5.742188 23.0625 5.066406 22.566406 4.730469 Z "/>
+            </g>
           </svg>
         </span>
         Выбрано
@@ -94,7 +94,7 @@
         </div>
 
         <div class="route__cancel">
-          <a href="" class="route__link-cancel">
+          <a href="" class="route__link-cancel" ng-click="vm.switchService()">
             <!-- Сделать с помощью after -->
             <span class="route__icon-cancel">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="20" viewBox="0 0 19 20"><g><g transform="translate(-1496 -891)"><image width="19" height="20" transform="translate(1496 891)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAACxUlEQVQ4T5WUTUhUURTH/+fNJE9qpiAKIyjokz5p0cJFBLOQeec1FhFpQZsgKAKxlUQSjbWQggoiTBKKatWjGMrex6g19AEK2aZV0MbaRVaQCILvzok7zJPxMaLd5b3/+7vn438PYQkrn88b+Xy+vJiU6glc191GRKeIKAdgF4AGADMAPhPRKxF5wswT8bvzYKVSacXMzMx1AG0icl9EXiYSia+WZf0uFovLlVL7ABwlotMAHpimeTmTyehHKmsONjg4uD6ZTHoAxpRSF3O53J+F0ioWi2uVUreJaJOIHLZt++cczPO8NIBxIupn5luL1SY6933/GgA2TfOAjrASme/7AwDKzHx2qaAa4FMA35i5i3zf3w7gnYhstW37bxX+GMAjZn4dhwdBcARA1rKs8/rM87w1RPQlDMO9FARBj4gsY+ZL0UXXdQ8ahvEcwIlaoAbpxhiGYWez2U+RPgiCPhH5qiMbB9DBzKO1UVSBzwCc1MCFQNVMbBG5oGGTIrIj6kg9IBHdE5Fz8Ygi7dDQ0FallKdhwsx1zVt99QqAPIBOZr5Tr0GFQmGVaZoTGjYtIuui4teKo9SI6KqIaGgl5TjQdd2NhmF80LBREem2bftNPVCUWryGMe0xETlDnud1A2iybbujxjuHAQzEaxQBiajdsqxSjV5baYyGh4c3hGH4UUR2R03wff+uYRgPa9sfs01Om1TvVe+Ph2G4M/oBNwBsZOb2//kBjuMkUqmUC+AtM/dWYI7jNKbT6ZKIvLcsq4uIZDGonnHNzc39IrLZNM1sJpMJ5ywxMjKyenZ2tkBEvxKJRGdLS8v3hYBBEGwpl8t9RKREpD1ywjx/OY7TkEqleojonIi8APBCKfUlmUz+IKKV5XJ5f3WesYjcnJqa6m1ra1PRowtN2iYiOk5EhwDsAdAIYFpPWgAvwzB83traOhmP/B+Al3B/w3iTlgAAAABJRU5ErkJggg=="/></g></g></svg>
@@ -106,50 +106,6 @@
         </div>
       </div>
       <!-- END route -->
-
-      <!--  -->
-
-      <div class="col" style="display: none">
-        <div class="col__item">
-
-          <div ng-repeat="(segNum, segment) in vm.orderInfo.flights" class="flight">
-            <div class="route_item_container" ng-repeat="(flightNum, flight) in segment.flights">
-              <div class="route_item">
-                <div class="route__i route_container">
-                  <div class="route_table">
-
-                    <div class="dep">
-                      <div class="dep__date"  ng-class="{ nextDay: flight.departuredayshift, attention: flight.departuredayshift}">
-                        {{ flight.departuredate | formatDate: 'D MMM, dd' }} -- {{ flight.departuretime }}
-                      </div>
-                      <div>
-                        {{ flight.origincityName }} -- {{ flight.originport }}
-                      </div>
-                    </div>
-
-                    <div>
-                      -------------
-                    </div>
-
-                    <div class="arr">
-                      <div class="arr__date" ng-class="{ nextDay: flight.arrivaldayshift, attention: flight.arrivaldayshift}">
-                        {{ flight.arrivaldate | formatDate: 'D MMM, dd' }} --  {{ flight.arrivaltime }}
-                      </div>
-                      <div>
-                        {{ flight.destinationcityName }} -- {{ flight.destinationport }}
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!--  -->
 
       <!-- flightsInfo -->
       <div class="flightsInfo">
@@ -241,7 +197,7 @@
                        <div class="passenger__price">
                          <span ng-bind-html="{ value: itemMealSelect.totalPrice, currency: itemMealSelect.currency } | price"></span>
 
-                         <a href ng-if="mealSelect" ng-click="" class="remove">
+                         <a href ng-if="mealSelect" class="remove" ng-click="vm.removePassengerFlightMeal(passengerNum, flightNum)">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="20" viewBox="0 0 19 20"><g><g transform="translate(-1496 -891)"><image width="19" height="20" transform="translate(1496 891)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAACxUlEQVQ4T5WUTUhUURTH/+fNJE9qpiAKIyjokz5p0cJFBLOQeec1FhFpQZsgKAKxlUQSjbWQggoiTBKKatWjGMrex6g19AEK2aZV0MbaRVaQCILvzok7zJPxMaLd5b3/+7vn438PYQkrn88b+Xy+vJiU6glc191GRKeIKAdgF4AGADMAPhPRKxF5wswT8bvzYKVSacXMzMx1AG0icl9EXiYSia+WZf0uFovLlVL7ABwlotMAHpimeTmTyehHKmsONjg4uD6ZTHoAxpRSF3O53J+F0ioWi2uVUreJaJOIHLZt++cczPO8NIBxIupn5luL1SY6933/GgA2TfOAjrASme/7AwDKzHx2qaAa4FMA35i5i3zf3w7gnYhstW37bxX+GMAjZn4dhwdBcARA1rKs8/rM87w1RPQlDMO9FARBj4gsY+ZL0UXXdQ8ahvEcwIlaoAbpxhiGYWez2U+RPgiCPhH5qiMbB9DBzKO1UVSBzwCc1MCFQNVMbBG5oGGTIrIj6kg9IBHdE5Fz8Ygi7dDQ0FallKdhwsx1zVt99QqAPIBOZr5Tr0GFQmGVaZoTGjYtIuui4teKo9SI6KqIaGgl5TjQdd2NhmF80LBREem2bftNPVCUWryGMe0xETlDnud1A2iybbujxjuHAQzEaxQBiajdsqxSjV5baYyGh4c3hGH4UUR2R03wff+uYRgPa9sfs01Om1TvVe+Ph2G4M/oBNwBsZOb2//kBjuMkUqmUC+AtM/dWYI7jNKbT6ZKIvLcsq4uIZDGonnHNzc39IrLZNM1sJpMJ5ywxMjKyenZ2tkBEvxKJRGdLS8v3hYBBEGwpl8t9RKREpD1ywjx/OY7TkEqleojonIi8APBCKfUlmUz+IKKV5XJ5f3WesYjcnJqa6m1ra1PRowtN2iYiOk5EhwDsAdAIYFpPWgAvwzB83traOhmP/B+Al3B/w3iTlgAAAABJRU5ErkJggg=="/></g></g></svg>
                           </a>
                        </div>
@@ -306,7 +262,10 @@
                     <div class="img">
                       <div class="food__counter" ng-if="mealItem.alreadySelectedCount > 0">
                         <span class="btn__icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11" height="8" viewBox="0 0 11 8"><g><g transform="translate(-1909 -2063)"><image width="11" height="8" transform="translate(1909 2063)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAICAYAAAAvOAWIAAAAlUlEQVQoU2NkIAK0n9eN/s/A2MxISC1U4XxGhv+JeBWDFTIyzmH4xxBeZXRpE07FbRf00xkY/k+AKQS5gLHtvN5DRob/VZWGl5fCnNR2Ti+TgZFhAsN/hlCQiTBxxrZzen4MTAwrGf//TwFpwKUQbDKIAGtgZFjN8J9hPQMjQyC6iXCTkawG2TCTkYExvtLg4i5soQQAlE88SKn3kiMAAAAASUVORK5CYII="/></g></g>
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 24" version="1.1" width="15px" height="12px">
+                            <g>
+                              <path d="M 22.566406 4.730469 L 20.773438 3.511719 C 20.277344 3.175781 19.597656 3.304688 19.265625 3.796875 L 10.476563 16.757813 L 6.4375 12.71875 C 6.015625 12.296875 5.328125 12.296875 4.90625 12.71875 L 3.371094 14.253906 C 2.949219 14.675781 2.949219 15.363281 3.371094 15.789063 L 9.582031 22 C 9.929688 22.347656 10.476563 22.613281 10.96875 22.613281 C 11.460938 22.613281 11.957031 22.304688 12.277344 21.839844 L 22.855469 6.234375 C 23.191406 5.742188 23.0625 5.066406 22.566406 4.730469 Z "/>
+                            </g>
                           </svg>
                         </span>
                       </div>
@@ -352,7 +311,7 @@
 </div>
 <!-- END item__i -->
 
-<div class="item__i mobileHide">
+<div class="item__i mobileHide" style="display: none">
     <div class="top">
         <div class="top__i">
 
