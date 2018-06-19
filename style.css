@@ -224,6 +224,10 @@
 	padding: 0 20px;
 }
 
+.flightsInfo__way {
+
+}
+
 .flightsInfo__title {
     color: #9e9e9e;
 }
@@ -237,6 +241,18 @@
 	display: flex;
     flex-direction: column;
     margin-right: 40px;
+    position: relative;
+}
+
+.flightsInfo__segment:after {
+	content: "→";
+ 	display: block;
+    position: absolute;
+    right: -25px;
+}
+
+.flightsInfo__segment:last-child:after {
+	display: none;
 }
 
 .flightsInfo__city {
@@ -282,12 +298,16 @@
     padding: 0 18px;
 }
 
-.food__passengers {
+.passengers {
     flex-basis: 50%;
     margin-right: 30px;
 }
 
-.food__name-passenger {
+.passengers > div {
+	border-bottom: 1px solid #ddd;
+}
+
+.passenger__name {
     cursor: pointer;
 	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="507" height="55" viewBox="0 0 507 55"><defs><path id="xwaha" d="M283 1328.05a4 4 0 0 1 4-4h470c.89 0 1.71.29 2.38.78.91-.43 2.06-.3 2.83.4l27.07 24.5c.95.86.95 2.26 0 3.11l-27.07 24.5c-.66.6-1.61.79-2.45.55-.71.69-1.69 1.11-2.76 1.11H287a4 4 0 0 1-4-4z"/></defs><g><g opacity=".5" transform="translate(-283 -1324)"><use fill="#fff" xlink:href="#xwaha"/></g></g></svg>') no-repeat center center;
     background-size: cover;
@@ -297,23 +317,7 @@
     position: relative;
 }
 
-.food__name-passenger.focus {
-	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="507" height="55" viewBox="0 0 507 55"><defs><path id="kfwta" d="M283 1161a4 4 0 0 1 4-4h470a4 4 0 0 1 3.17 1.56c.72-.09 1.48.12 2.04.62l27.07 24.5c.95.87.95 2.26 0 3.12l-27.07 24.5c-.9.8-2.3.86-3.26.14-.58.33-1.24.51-1.95.51H287a4 4 0 0 1-4-4z"/><clipPath id="kfwtb"><use fill="#fff" xlink:href="#kfwta"/></clipPath></defs><g><g transform="translate(-283 -1157)"><use fill="#fff" xlink:href="#kfwta"/><use fill="#fff" fill-opacity="0" stroke="#e8e8e8" stroke-miterlimit="50" stroke-width="2" clip-path="url(&quot;#kfwtb&quot;)" xlink:href="#kfwta"/></g></g></svg>') no-repeat center center;
-    background-size: cover;
-    color: #000;
-}
-
-.food__meal-passenger {
-	margin-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #000;
-    padding-right: 30px;
-    padding-left: 5px;
-}
-
-.food__name-passenger:before {
+.passenger__name:before {
 	content: "";
     display: inline-block;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26 26" version="1.1" width="50px" height="50px"><g id="surface1"><path fill="#9e9e9e" d="M 16.5625 15.898438 C 16.402344 15.847656 15.398438 15.394531 16.027344 13.484375 L 16.019531 13.484375 C 17.65625 11.800781 18.90625 9.085938 18.90625 6.414063 C 18.90625 2.308594 16.175781 0.15625 13 0.15625 C 9.824219 0.15625 7.109375 2.308594 7.109375 6.414063 C 7.109375 9.097656 8.351563 11.820313 10 13.503906 C 10.640625 15.1875 9.492188 15.8125 9.253906 15.898438 C 5.929688 17.101563 2.03125 19.292969 2.03125 21.457031 C 2.03125 22.039063 2.03125 21.6875 2.03125 22.269531 C 2.03125 25.214844 7.742188 25.886719 13.03125 25.886719 C 18.328125 25.886719 23.96875 25.214844 23.96875 22.269531 C 23.96875 21.6875 23.96875 22.039063 23.96875 21.457031 C 23.96875 19.230469 20.050781 17.054688 16.5625 15.898438 Z "/></g></svg>') no-repeat;
@@ -324,7 +328,7 @@
     left: 20px;
 }
 
-.food__name-passenger.focus:before {
+.passenger__name.focus:before {
 	 background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26 26" version="1.1" width="50px" height="50px"><g id="surface1"><path fill="#85ce2d" d="M 16.5625 15.898438 C 16.402344 15.847656 15.398438 15.394531 16.027344 13.484375 L 16.019531 13.484375 C 17.65625 11.800781 18.90625 9.085938 18.90625 6.414063 C 18.90625 2.308594 16.175781 0.15625 13 0.15625 C 9.824219 0.15625 7.109375 2.308594 7.109375 6.414063 C 7.109375 9.097656 8.351563 11.820313 10 13.503906 C 10.640625 15.1875 9.492188 15.8125 9.253906 15.898438 C 5.929688 17.101563 2.03125 19.292969 2.03125 21.457031 C 2.03125 22.039063 2.03125 21.6875 2.03125 22.269531 C 2.03125 25.214844 7.742188 25.886719 13.03125 25.886719 C 18.328125 25.886719 23.96875 25.214844 23.96875 22.269531 C 23.96875 21.6875 23.96875 22.039063 23.96875 21.457031 C 23.96875 19.230469 20.050781 17.054688 16.5625 15.898438 Z "/></g></svg>') no-repeat;
     width: 15px;
     height: 15px;
@@ -333,12 +337,28 @@
     left: 20px;
 }
 
-.food__price {
+.passenger__name.focus {
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="507" height="55" viewBox="0 0 507 55"><defs><path id="kfwta" d="M283 1161a4 4 0 0 1 4-4h470a4 4 0 0 1 3.17 1.56c.72-.09 1.48.12 2.04.62l27.07 24.5c.95.87.95 2.26 0 3.12l-27.07 24.5c-.9.8-2.3.86-3.26.14-.58.33-1.24.51-1.95.51H287a4 4 0 0 1-4-4z"/><clipPath id="kfwtb"><use fill="#fff" xlink:href="#kfwta"/></clipPath></defs><g><g transform="translate(-283 -1157)"><use fill="#fff" xlink:href="#kfwta"/><use fill="#fff" fill-opacity="0" stroke="#e8e8e8" stroke-miterlimit="50" stroke-width="2" clip-path="url(&quot;#kfwtb&quot;)" xlink:href="#kfwta"/></g></g></svg>') no-repeat center center;
+    background-size: cover;
+    color: #000;
+}
+
+.passenger__meal {
+	margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    padding-right: 30px;
+    padding-left: 5px;
+}
+
+.passenger__price {
 	display: flex;
     align-items: center;
 }
 
-.food__remove {
+.passenger .remove {
 	height: 20px;
     margin-left: 20px;
 }
@@ -462,6 +482,11 @@
     margin-top: 15px;
 }
 
+.food .btn:hover {
+    background: #4dca00;
+    color: #fff;
+}
+
 .food .btn.selected {
 	background-image: linear-gradient(to top, #84cd2b 0%, #5abf3f 100%);
     color: #fff;
@@ -470,7 +495,7 @@
 
 
 .food .img,
-.food .name,
+.food .name, 
 .food .description
 {
 	padding: 0;
