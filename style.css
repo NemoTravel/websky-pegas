@@ -1,3 +1,8 @@
+/*
+gleen -- #4dca00
+liteGreen - #84cd2b
+*/
+
 .content .wrap.wrap_pt32 {
 	max-width: 1150px;
 }
@@ -68,6 +73,11 @@
 	margin-right: 5px;
 }
 
+.info__text {
+	display: inline-block;
+    margin-right: 4px;
+}
+
 .buttons {
     margin-left: auto;
     display: flex;
@@ -88,7 +98,7 @@
 }
 
 .checkoutServices__i .list>.item .top .btn:hover {
-	background: #4dca00;
+    background-image: linear-gradient(to top, #84cd2b 0%, #5abf3f 100%);
     color: #fff;
 }
 
@@ -110,6 +120,10 @@
     height: 22px;
     border-radius: 50%;
     text-align: center;
+}
+
+.checkoutServices__i .list>.item .top .btn .btn__icon svg {
+	fill: #84cd2b;
 }
 
 .toggle {
@@ -232,9 +246,18 @@
     color: #9e9e9e;
 }
 
+.flightsInfo__wrap {
+	display: flex;
+    flex-wrap: wrap;
+}
+
 .flightsInfo__segments {
 	display: flex;
     margin-top: 5px;
+}
+
+.flightsInfo__segments > div {
+	display: flex;
 }
 
 .flightsInfo__segment {
@@ -455,6 +478,10 @@
     line-height: 25px;
 }
 
+.food__counter svg {
+	fill: #fff;
+}
+
 .food .img img {
 	height: 160px;
 }
@@ -483,7 +510,7 @@
 }
 
 .food .btn:hover {
-    background: #4dca00;
+    background-image: linear-gradient(to top, #84cd2b 0%, #5abf3f 100%);
     color: #fff;
 }
 
@@ -495,7 +522,7 @@
 
 
 .food .img,
-.food .name, 
+.food .name,
 .food .description
 {
 	padding: 0;
