@@ -120,7 +120,8 @@
           <!-- flightsInfo__wrap -->
           <div class="flightsInfo__wrap">
             <div ng-repeat="(segNum, segment) in vm.orderInfo.flights" class="flightsInfo__segments">
-              <div ng-repeat="(flightNum, flight) in segment.flights">
+              <div ng-repeat="(flightNum, flight) in segment.flights"
+                   ng-if="vm.selectedFlight == segNum">
 
                 <div class="flightsInfo__segment">
                   <div class="flightsInfo__city">
