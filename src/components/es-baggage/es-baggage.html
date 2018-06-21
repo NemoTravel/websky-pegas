@@ -1,5 +1,5 @@
 <!-- item__i -->
-<div class="item__i mobileHide" style="display: none">
+<div class="item__i mobileHide" style="display: none; margin-bottom: 20px;">
   <!-- top -->
   <div class="top">
 
@@ -70,6 +70,98 @@
     <!-- END buttons -->
   </div>
   <!-- END top -->
+
+  <!-- drop -->
+  <div class="drop" ng-class="{ active: vm.service.active, show_js: vm.service.active }">
+    <div class="drop__i">
+      <!-- route -->
+      <div class="route">
+
+        <div class="route__flights-panel">
+          <div class="route__title">
+            Выбор питания на рейсе
+          </div>
+
+          <div class="route__buttons">
+            <a ng-repeat="(flightNum, flight) in vm.orderInfo.plainFlights"
+               ng-click="vm.service.availableBySegments[flightNum] && vm.selectRoutePartPassenger(flightNum, 0)"
+               ng-class="{ active: vm.selectedRoutePartNum == flightNum && vm.service.availableBySegments[flightNum] }"
+               ng-repeat="(flightNum, flight) in vm.orderInfo.plainFlights" href="">
+              {{ flight.origincityName }}
+            </a>
+          </div>
+        </div>
+
+        <div class="route__cancel">
+          <a href="" class="route__link-cancel" ng-click="vm.switchService()">
+            <!-- Сделать с помощью after -->
+            <span class="route__icon-cancel">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="20" viewBox="0 0 19 20"><g><g transform="translate(-1496 -891)"><image width="19" height="20" transform="translate(1496 891)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAACxUlEQVQ4T5WUTUhUURTH/+fNJE9qpiAKIyjokz5p0cJFBLOQeec1FhFpQZsgKAKxlUQSjbWQggoiTBKKatWjGMrex6g19AEK2aZV0MbaRVaQCILvzok7zJPxMaLd5b3/+7vn438PYQkrn88b+Xy+vJiU6glc191GRKeIKAdgF4AGADMAPhPRKxF5wswT8bvzYKVSacXMzMx1AG0icl9EXiYSia+WZf0uFovLlVL7ABwlotMAHpimeTmTyehHKmsONjg4uD6ZTHoAxpRSF3O53J+F0ioWi2uVUreJaJOIHLZt++cczPO8NIBxIupn5luL1SY6933/GgA2TfOAjrASme/7AwDKzHx2qaAa4FMA35i5i3zf3w7gnYhstW37bxX+GMAjZn4dhwdBcARA1rKs8/rM87w1RPQlDMO9FARBj4gsY+ZL0UXXdQ8ahvEcwIlaoAbpxhiGYWez2U+RPgiCPhH5qiMbB9DBzKO1UVSBzwCc1MCFQNVMbBG5oGGTIrIj6kg9IBHdE5Fz8Ygi7dDQ0FallKdhwsx1zVt99QqAPIBOZr5Tr0GFQmGVaZoTGjYtIuui4teKo9SI6KqIaGgl5TjQdd2NhmF80LBREem2bftNPVCUWryGMe0xETlDnud1A2iybbujxjuHAQzEaxQBiajdsqxSjV5baYyGh4c3hGH4UUR2R03wff+uYRgPa9sfs01Om1TvVe+Ph2G4M/oBNwBsZOb2//kBjuMkUqmUC+AtM/dWYI7jNKbT6ZKIvLcsq4uIZDGonnHNzc39IrLZNM1sJpMJ5ywxMjKyenZ2tkBEvxKJRGdLS8v3hYBBEGwpl8t9RKREpD1ywjx/OY7TkEqleojonIi8APBCKfUlmUz+IKKV5XJ5f3WesYjcnJqa6m1ra1PRowtN2iYiOk5EhwDsAdAIYFpPWgAvwzB83traOhmP/B+Al3B/w3iTlgAAAABJRU5ErkJggg=="/></g></g></svg>
+            </span>
+            <span>
+              {{ 'web.extraServices.meal.cancelService' | aliasStatic }}
+            </span>
+          </a>
+        </div>
+      </div>
+      <!-- END route -->
+
+      <!-- flightsInfo -->
+      <div class="flightsInfo">
+
+        <div class="flightsInfo__way">
+          <div class="flightsInfo__title">
+            <span ng-if="vm.orderInfo.header.regnum">
+                {{ vm.orderInfo.header.regnum }}
+            </span>
+          </div>
+
+          <!-- flightsInfo__wrap -->
+          <div class="flightsInfo__wrap">
+            <div ng-repeat="(segNum, segment) in vm.orderInfo.flights" class="flightsInfo__segments">
+              <div ng-repeat="(flightNum, flight) in segment.flights"
+                   ng-if="vm.selectedRoutePartNum == segNum">
+
+                <div class="flightsInfo__segment">
+                  <div class="flightsInfo__city">
+                    <span class="flightsInfo__city-name">
+                      {{ flight.origincityName }}
+                    </span>
+                    <span class="flightsInfo__city-code">
+                      {{ flight.originport }}
+                    </span>
+                  </div>
+                  <div class="flightsInfo__date">
+                    в {{ flight.departuredate | formatDate: 'D MMM, dd' }} {{ flight.departuretime }}
+                  </div>
+                </div>
+
+                <div class="flightsInfo__segment">
+                  <div class="flightsInfo__city">
+                    <span class="flightsInfo__city-name">
+                      {{ flight.destinationcityName }}
+                    </span>
+                    <span class="flightsInfo__city-code">
+                      {{ flight.destinationport }}
+                    </span>
+                  </div>
+                  <div class="flightsInfo__date">
+                    в {{ flight.arrivaldate | formatDate: 'D MMM, dd' }} {{ flight.arrivaltime }}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- END flightsInfo__wrap  -->
+
+        </div>
+
+      </div>
+      <!-- END flightsInfo-->
+    </div>
+  </div>
+  <!-- END drop -->
 </div>
 <!-- END item__i -->
 
