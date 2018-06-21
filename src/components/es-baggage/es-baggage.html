@@ -1,3 +1,79 @@
+<!-- item__i -->
+<div class="item__i mobileHide" style="display: none">
+  <!-- top -->
+  <div class="top">
+
+    <!-- icon -->
+    <div class="icon" ng-class="{ not: (!vm.service.editablePrice && !vm.service.active) }">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214 212" width="42" height="24">
+        <path d="M107.33,0a53.05,53.05,0,0,0-53,52H54v1h0V212H160V52h.31A53.06,53.06,0,0,0,107.33,0Zm0,25a28,28,0,0,1,28,27H79.36A28,28,0,0,1,107.33,25Z"/>
+        <path d="M0,67.25v130C0,205.52,6.92,212,15.33,212H31V52H15.33A15.43,15.43,0,0,0,0,67.25Z"/>
+        <path d="M199.33,52H183V212h16.33A14.44,14.44,0,0,0,214,197.25v-130C214,58.84,207.6,52,199.33,52Z"/>
+      </svg>
+    </div>
+    <!-- END icon -->
+
+    <!-- name -->
+    <div class="name">
+      <h2 class="name__heading">
+        {{ 'web.extraServices.baggage.header' | aliasStatic}}
+
+        <span class="name__min-price" ng-if="vm.service.minPrice">
+          {{ 'web.extraServices.minPrice' | aliasStatic}}
+          <span ng-bind-html="{ value: vm.service.minPrice.price, currency: vm.service.minPrice.currency } | price"></span>
+        </span>
+      </h2>
+
+      <p class="name__description">
+        {{ 'web.extraServices.baggage.desc' | aliasStatic}}
+      </p>
+    </div>
+    <!-- END name -->
+
+    <!-- info -->
+    <div class="info" ng-if="vm.service.editablePrice">
+      <a class="info__close-icon" ng-if="!vm.service.active" ng-click="vm.removePassengerFlightMeal(vm.selectedPassenger, vm.selectedFlight)">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="20" viewBox="0 0 19 20"><g><g transform="translate(-1496 -891)"><image width="19" height="20" transform="translate(1496 891)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAACxUlEQVQ4T5WUTUhUURTH/+fNJE9qpiAKIyjokz5p0cJFBLOQeec1FhFpQZsgKAKxlUQSjbWQggoiTBKKatWjGMrex6g19AEK2aZV0MbaRVaQCILvzok7zJPxMaLd5b3/+7vn438PYQkrn88b+Xy+vJiU6glc191GRKeIKAdgF4AGADMAPhPRKxF5wswT8bvzYKVSacXMzMx1AG0icl9EXiYSia+WZf0uFovLlVL7ABwlotMAHpimeTmTyehHKmsONjg4uD6ZTHoAxpRSF3O53J+F0ioWi2uVUreJaJOIHLZt++cczPO8NIBxIupn5luL1SY6933/GgA2TfOAjrASme/7AwDKzHx2qaAa4FMA35i5i3zf3w7gnYhstW37bxX+GMAjZn4dhwdBcARA1rKs8/rM87w1RPQlDMO9FARBj4gsY+ZL0UXXdQ8ahvEcwIlaoAbpxhiGYWez2U+RPgiCPhH5qiMbB9DBzKO1UVSBzwCc1MCFQNVMbBG5oGGTIrIj6kg9IBHdE5Fz8Ygi7dDQ0FallKdhwsx1zVt99QqAPIBOZr5Tr0GFQmGVaZoTGjYtIuui4teKo9SI6KqIaGgl5TjQdd2NhmF80LBREem2bftNPVCUWryGMe0xETlDnud1A2iybbujxjuHAQzEaxQBiajdsqxSjV5baYyGh4c3hGH4UUR2R03wff+uYRgPa9sfs01Om1TvVe+Ph2G4M/oBNwBsZOb2//kBjuMkUqmUC+AtM/dWYI7jNKbT6ZKIvLcsq4uIZDGonnHNzc39IrLZNM1sJpMJ5ywxMjKyenZ2tkBEvxKJRGdLS8v3hYBBEGwpl8t9RKREpD1ywjx/OY7TkEqleojonIi8APBCKfUlmUz+IKKV5XJ5f3WesYjcnJqa6m1ra1PRowtN2iYiOk5EhwDsAdAIYFpPWgAvwzB83traOhmP/B+Al3B/w3iTlgAAAABJRU5ErkJggg=="/></g></g></svg>
+      </a>
+      <span class="info__text">{{ 'web.extraServices.meal.totalToPay' | aliasStatic}}</span> <span ng-bind-html="{ value: vm.service.editablePrice.price, currency: vm.service.editablePrice.currency } | price"> </span>
+    </div>
+    <!-- END info -->
+
+    <!-- buttons -->
+    <div class="buttons">
+      <a href="" class="toggle" ng-if="vm.service.active || vm.service.editablePrice" ng-click="vm.service.active = !vm.service.active" ng-class="{ open: vm.service.active}">
+        <span class="show">
+          {{ 'web.extraServices.meal.show' | aliasStatic}}
+        </span>
+        <span class="hide">
+          {{ 'web.extraServices.meal.hide' | aliasStatic}}
+        </span>
+      </a>
+
+      <a href="" class="btn" ng-click="vm.switchService()" ng-if="!vm.service.active && !vm.service.editablePrice">
+        <!-- {{ 'web.extraServices.meal.selectedFood' | aliasStatic}} -->
+        Добавить багаж
+      </a>
+
+      <a href="" class="btn done" ng-click="vm.switchService()" ng-if="!vm.service.active && vm.service.editablePrice">
+        <span class="btn__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 24" version="1.1" width="15px" height="12px">
+            <g>
+              <path d="M 22.566406 4.730469 L 20.773438 3.511719 C 20.277344 3.175781 19.597656 3.304688 19.265625 3.796875 L 10.476563 16.757813 L 6.4375 12.71875 C 6.015625 12.296875 5.328125 12.296875 4.90625 12.71875 L 3.371094 14.253906 C 2.949219 14.675781 2.949219 15.363281 3.371094 15.789063 L 9.582031 22 C 9.929688 22.347656 10.476563 22.613281 10.96875 22.613281 C 11.460938 22.613281 11.957031 22.304688 12.277344 21.839844 L 22.855469 6.234375 C 23.191406 5.742188 23.0625 5.066406 22.566406 4.730469 Z "/>
+            </g>
+          </svg>
+        </span>
+        {{ 'web.extraServices.meal.picked' | aliasStatic}}
+      </a>
+
+    </div>
+    <!-- END buttons -->
+  </div>
+  <!-- END top -->
+</div>
+<!-- END item__i -->
+
+
 <div class="item__i mobileHide">
     <div class="top">
         <div class="top__i">
@@ -111,7 +187,7 @@
                                             <span ng-bind-html=" { value: selectedPassengerRoutePartBaggage.cost, currency: selectedPassengerRoutePartBaggage.currency } | price"></span>
                                         </wrap>
                                     </a>
-                                    <a ng-if="selectedPassengerRoutePartBaggage && !vm.checkServiceRemovalProhibited('baggage', passengerNum, routePart.mainFlightNum)" 
+                                    <a ng-if="selectedPassengerRoutePartBaggage && !vm.checkServiceRemovalProhibited('baggage', passengerNum, routePart.mainFlightNum)"
                                         href ng-click="vm.removePassengerFlightBaggage(passengerNum, routePart.mainFlightNum)" class="btn-remove">
                                         <span class="infoBoxWrap">
                                             <i class="icon_remove"></i>
@@ -131,7 +207,7 @@
 
 
                                     <div class="baggage_container">
-                                        
+
                                         <table class="baggage_table baggage_table--free">
                                             <tbody>
                                                 <tr ng-repeat="freeBaggageItem in vm.service.routeParts[vm.selectedRoutePartNum].flightsInfo.freeBaggage" ng-if="freeBaggageItem.passengerCode == vm.orderInfo.passengers[vm.selectedPassenger].categoryCode">
@@ -155,7 +231,7 @@
                                             </tbody>
                                         </table>
 
-                                        
+
                                         <wrap ng-repeat="(subgroupNum, subgroup) in vm.service.subgroups">
                                             <wrap ng-if="subgroup.type == 'COUNTABLE_MULTIPLE_SELECT'">
                                                 <table class="baggage_table">
@@ -180,7 +256,7 @@
                                                     </tr>
                                                 </table>
                                             </wrap>
-                                            
+
                                             <wrap ng-if="subgroup.type == 'SELECT'"
                                                 ng-repeat="(subgroupNum, baggageSubgoupOptions) in vm.optionsByRoutePartsAndPassengers[vm.selectedRoutePartNum][vm.selectedPassenger]">
                                                 <ui-select name="selectedBaggage"
@@ -199,9 +275,9 @@
                                                </ui-select>
 
                                             </wrap>
-                                            
+
                                         </wrap>
-                                        
+
                                     </div>
 
 
@@ -230,26 +306,24 @@
 <div class="item__i mobileShow">
 
 	<div class="top">
-        <div class="top__i">
-            <a href>
-				<div class="row">
-					<table>
+    <div class="top__i">
+      <a href>
+        <div class="row">
+          <table>
 						<tbody>
-                            <tr>
-                                <td>
-                                    <i class="icon_luggage"></i>
-                                </td>
-                                <td>
-								    <div class="name">
-                                        {{ 'web.extraServices.baggage.header' | aliasStatic}}
-                                        <a href fancybox="popupAlias" data-popup-alias="web.extraServicesRules.baggage">
-                                            <i class="icon_info"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+              <tr>
+                <td><i class="icon_luggage"></i></td>
+                  <td>
+                    <div class="name">
+                      {{ 'web.extraServices.baggage.header' | aliasStatic}}
+                      <a href fancybox="popupAlias" data-popup-alias="web.extraServicesRules.baggage">
+                        <i class="icon_info"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 				</div>
 			</a>
             <div class="row">
@@ -271,7 +345,7 @@
                         </div>
                     </div>
                 </a>
-                <a href ng-click="vm.switchService()" 
+                <a href ng-click="vm.switchService()"
                     ng-if="!vm.checkServiceRemovalProhibited('baggage')"
                     ng-class="{ active: vm.service.active }" class="btn showDrop_js">
                     <span class="show">
@@ -335,7 +409,7 @@
                                                 <span ng-bind-html=" { value: selectedPassengerRoutePartBaggage.cost, currency: selectedPassengerRoutePartBaggage.currency } | price"></span>
                                             </wrap>
                                         </a>
-                                        <a ng-if="selectedPassengerRoutePartBaggage && !vm.checkServiceRemovalProhibited('baggage', passengerNum, routePart.mainFlightNum)" 
+                                        <a ng-if="selectedPassengerRoutePartBaggage && !vm.checkServiceRemovalProhibited('baggage', passengerNum, routePart.mainFlightNum)"
                                             href ng-click="vm.removePassengerFlightBaggage(passengerNum, routePart.mainFlightNum)" class="btn-remove">
                                             <span class="infoBoxWrap">
                                                 <i class="icon_remove"></i>
@@ -354,7 +428,7 @@
                     </div>
                 </div>
                 <div class="passengersTable__cancel">
-                    <a href ng-click="vm.switchService()" 
+                    <a href ng-click="vm.switchService()"
                         ng-if="!vm.checkServiceRemovalProhibited('baggage')"
                         class="passengersTable__link passengersTable__link_cancel">
                         {{ 'web.extraServices.baggage.cancel' | aliasStatic}}
@@ -379,4 +453,3 @@
     </popup-baggage>
 
 </div>
-
