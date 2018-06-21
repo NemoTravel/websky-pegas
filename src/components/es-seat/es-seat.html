@@ -1,5 +1,5 @@
 <!-- item__i -->
-<div class="item__i mobileHide" style="display: none; margin-bottom: 50px;">
+<div class="item__i mobileHide" style="display: none;">
   <!-- top -->
   <div class="top">
 
@@ -186,9 +186,21 @@
                          <!-- name-passenger -->
                          <div class="passenger__name"
                               ng-click="vm.selectFlightPassenger(flightNum, passengerNum)"
-                              ng-class=" { focus: passengerNum === vm.selectedPassenger,
-                                           notChoice: !mealSelect && vm.service.availableByPassengerSegments[passengerNum] } ">
+                              ng-class=" { focus: passengerNum === vm.selectedPassenger } ">
                            {{ passenger.lastName }} {{ passenger.firstName }}
+                           <div class="passenger__price" ng-if="vm.service.selectedSeatsByPassengerSegments[passengerNum][flightNum]">
+                             <span ng-bind-html="{ value: vm.service.selectedSeatsByPassengerSegments[passengerNum][flightNum].totalPrice, currency: vm.service.selectedSeatsByPassengerSegments[passengerNum][flightNum].currency } | price"></span>
+                             <span class="passenger__seat-code">
+                                 {{ vm.service.selectedSeatsByPassengerSegments[passengerNum][flightNum].value }}
+                             </span>
+                             <a href class="remove" ng-click="vm.removePassengerFlightSeat(passengerNum, flightNum)">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="20" viewBox="0 0 19 20"><g><g transform="translate(-1496 -891)"><image width="19" height="20" transform="translate(1496 891)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAACxUlEQVQ4T5WUTUhUURTH/+fNJE9qpiAKIyjokz5p0cJFBLOQeec1FhFpQZsgKAKxlUQSjbWQggoiTBKKatWjGMrex6g19AEK2aZV0MbaRVaQCILvzok7zJPxMaLd5b3/+7vn438PYQkrn88b+Xy+vJiU6glc191GRKeIKAdgF4AGADMAPhPRKxF5wswT8bvzYKVSacXMzMx1AG0icl9EXiYSia+WZf0uFovLlVL7ABwlotMAHpimeTmTyehHKmsONjg4uD6ZTHoAxpRSF3O53J+F0ioWi2uVUreJaJOIHLZt++cczPO8NIBxIupn5luL1SY6933/GgA2TfOAjrASme/7AwDKzHx2qaAa4FMA35i5i3zf3w7gnYhstW37bxX+GMAjZn4dhwdBcARA1rKs8/rM87w1RPQlDMO9FARBj4gsY+ZL0UXXdQ8ahvEcwIlaoAbpxhiGYWez2U+RPgiCPhH5qiMbB9DBzKO1UVSBzwCc1MCFQNVMbBG5oGGTIrIj6kg9IBHdE5Fz8Ygi7dDQ0FallKdhwsx1zVt99QqAPIBOZr5Tr0GFQmGVaZoTGjYtIuui4teKo9SI6KqIaGgl5TjQdd2NhmF80LBREem2bftNPVCUWryGMe0xETlDnud1A2iybbujxjuHAQzEaxQBiajdsqxSjV5baYyGh4c3hGH4UUR2R03wff+uYRgPa9sfs01Om1TvVe+Ph2G4M/oBNwBsZOb2//kBjuMkUqmUC+AtM/dWYI7jNKbT6ZKIvLcsq4uIZDGonnHNzc39IrLZNM1sJpMJ5ywxMjKyenZ2tkBEvxKJRGdLS8v3hYBBEGwpl8t9RKREpD1ywjx/OY7TkEqleojonIi8APBCKfUlmUz+IKKV5XJ5f3WesYjcnJqa6m1ra1PRowtN2iYiOk5EhwDsAdAIYFpPWgAvwzB83traOhmP/B+Al3B/w3iTlgAAAABJRU5ErkJggg=="/></g></g></svg>
+                              </a>
+                           </div>
+                           <div class="passenger__seat-text_none"
+                                ng-if="!vm.service.selectedSeatsByPassengerSegments[passengerNum][flightNum]">
+                             Место не выбрано
+                           </div>
                          </div>
                          <!-- end name-passenger -->
 
@@ -202,21 +214,51 @@
 
               </div>
 
-              <!--  -->
+              <!-- infoSeat -->
               <div class="infoSeat" ng-if="!vm.loadingSeatMap && vm.seatMap">
                 <div class="infoSeat__title">
                   Категории мест
                 </div>
                 <div class="infoSeat__list">
-                  <div class="infoSeat__item infoSeat__item_free">
-                    <div class="infoSeat__lable"></div>
-                    <div class="infoSeat__text">
+
+                  <div class="infoSeat__item">
+                    <span class="infoSeat__lable infoSeat__lable_free"></span>
+                    <span class="infoSeat__text">
                       {{ 'web.extraServices.seat.free' | aliasStatic}}
-                    </div>
+                    </span>
                   </div>
+
+                  <div class="infoSeat__item">
+                    <span class="infoSeat__lable infoSeat__lable_selected"></span>
+                    <span>
+                      {{ 'web.extraServices.seat.selected' | aliasStatic}}
+                    </span>
+                  </div>
+
+                  <div class="infoSeat__item">
+                    <span class="infoSeat__lable infoSeat__lable_selectedByOrderPassenger"></span>
+                    <span>
+                      {{ 'web.extraServices.seat.selectedByOrderPassenger' | aliasStatic}}
+                    </span>
+                  </div>
+
+                  <div class="infoSeat__item">
+                    <span class="infoSeat__lable infoSeat__lable_disabled"></span>
+                    <span>
+                      {{ 'web.extraServices.seat.disabled' | aliasStatic}}
+                    </span>
+                  </div>
+
+                  <div class="infoSeat__item">
+                    <span class="infoSeat__lable infoSeat__lable_exit"></span>
+                    <span>
+                      Место у выхода
+                    </span>
+                  </div>
+
                 </div>
               </div>
-              <!--  -->
+              <!-- END infoSeat -->
 
             </div>
             <!-- END passengers -->
