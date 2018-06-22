@@ -159,6 +159,90 @@
 
       </div>
       <!-- END flightsInfo-->
+
+      <div class="baggage">
+        <!-- passengers -->
+        <div class="passengers">
+          <div ng-repeat="(routePartNum, routePart) in vm.service.routeParts"
+               ng-if="vm.service.availableBySegments[routePartNum] && vm.selectedRoutePartNum == routePartNum">
+
+              <div ng-repeat="(passengerNum, passenger) in vm.orderInfo.passengers">
+
+                   <!-- passenger -->
+                   <div class="passenger"
+                        ng-if="passenger.hasSeats">
+
+                     <!-- name-passenger -->
+                     <div class="passenger__name"
+                          ng-click="vm.selectRoutePartPassenger(routePartNum, passengerNum)"
+                          ng-class=" { focus: passengerNum === vm.selectedPassenger } ">
+                       {{ passenger.lastName }} {{ passenger.firstName }}
+                     </div>
+                     <!-- end name-passenger -->
+
+                     <!-- meal-passenger -->
+
+                     <!-- end meal-passenger -->
+
+                   </div>
+                   <!-- END passenger -->
+
+              </div>
+
+          </div>
+        </div>
+        <!-- END passengers -->
+
+        <!-- baggage-select -->
+        <div class="baggage-select">
+
+        <div ng-repeat="(routePartNum, routePart) in vm.service.routeParts"
+             ng-if="routePartNum == vm.selectedRoutePartNum">
+
+          <div ng-repeat="(subgroupNum, subgroup) in vm.service.subgroups"
+               ng-if="subgroup.type == 'COUNTABLE_MULTIPLE_SELECT'">
+
+            <div class="baggage-select__title">
+              {{ subgroup.title }}
+            </div>
+
+            <!-- baggage-select__list -->
+            <div class="baggage-select__list">
+
+              <div class="baggage-select__item"
+                   ng-repeat="(itemNum, baggageItem) in vm.service.routeParts[vm.selectedRoutePartNum].availableExtraServicesByPassengersAndSubgroups[vm.selectedPassenger][subgroupNum]">
+
+                <span class="baggage-select__name">
+                  {{ baggageItem.title }}
+                </span>
+                <service-picker count="baggageItem.alreadySelectedCount"
+                    limit="baggageItem.limit"
+                    locked="vm.locked"
+                    on-increase="vm.baggageCountChangeHandler(subgroupNum, baggageItem, +1, vm.selectedPassenger, vm.selectedRoutePartNum)"
+                    on-decrease="vm.baggageCountChangeHandler(subgroupNum, baggageItem, -1, vm.selectedPassenger, vm.selectedRoutePartNum)">
+                </service-picker>
+                <span class="baggage-select__price"
+                      ng-bind-html=" { value: baggageItem.price, currency: baggageItem.currency} | price"
+                      ng-if="baggageItem.price">
+                </span>
+                <span class="baggage-select__price"
+                      ng-bind-html="{ value: baggageItem.totalPrice, currency: baggageItem.currency} | price"
+                      ng-if="baggageItem.totalPrice">
+                </span>
+
+              </div>
+
+            </div>
+            <!-- END baggage-select__list -->
+
+          </div>
+
+        </div>
+
+        </div>
+        <!-- END baggage-select -->
+
+      </div>
     </div>
   </div>
   <!-- END drop -->
