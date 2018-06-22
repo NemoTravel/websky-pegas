@@ -166,7 +166,8 @@
           <div ng-repeat="(routePartNum, routePart) in vm.service.routeParts"
                ng-if="vm.service.availableBySegments[routePartNum] && vm.selectedRoutePartNum == routePartNum">
 
-              <div ng-repeat="(passengerNum, passenger) in vm.orderInfo.passengers">
+              <div ng-repeat="(passengerNum, passenger) in vm.orderInfo.passengers"
+                   ng-init="selectedPassengerRoutePartBaggage = vm.getSelectedPassengerRoutePartBaggage(passengerNum, routePartNum)">
 
                    <!-- passenger -->
                    <div class="passenger"
@@ -180,9 +181,28 @@
                      </div>
                      <!-- end name-passenger -->
 
-                     <!-- meal-passenger -->
+                     <!-- baggage-passenger -->
 
+                     <!-- meal-passenger -->
+                     <div ng-if="selectedPassengerRoutePartBaggage"
+                          class="passenger__meal">
+
+                        <div>
+                          {{ selectedPassengerRoutePartBaggage.count }}
+                          {{ 'web.search.priceDetail.label.luggDescMsr.' | aliasWithPrefix:'pc' }}
+                        </div>
+
+                       <div class="passenger__price">
+                         <span ng-bind-html="{ value: selectedPassengerRoutePartBaggage.cost, currency: selectedPassengerRoutePartBaggage.currency } | price"></span>
+                         <a href class="remove" ng-click="vm.removePassengerFlightBaggage(passengerNum, routePart.mainFlightNum)">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="20" viewBox="0 0 19 20"><g><g transform="translate(-1496 -891)"><image width="19" height="20" transform="translate(1496 891)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAACxUlEQVQ4T5WUTUhUURTH/+fNJE9qpiAKIyjokz5p0cJFBLOQeec1FhFpQZsgKAKxlUQSjbWQggoiTBKKatWjGMrex6g19AEK2aZV0MbaRVaQCILvzok7zJPxMaLd5b3/+7vn438PYQkrn88b+Xy+vJiU6glc191GRKeIKAdgF4AGADMAPhPRKxF5wswT8bvzYKVSacXMzMx1AG0icl9EXiYSia+WZf0uFovLlVL7ABwlotMAHpimeTmTyehHKmsONjg4uD6ZTHoAxpRSF3O53J+F0ioWi2uVUreJaJOIHLZt++cczPO8NIBxIupn5luL1SY6933/GgA2TfOAjrASme/7AwDKzHx2qaAa4FMA35i5i3zf3w7gnYhstW37bxX+GMAjZn4dhwdBcARA1rKs8/rM87w1RPQlDMO9FARBj4gsY+ZL0UXXdQ8ahvEcwIlaoAbpxhiGYWez2U+RPgiCPhH5qiMbB9DBzKO1UVSBzwCc1MCFQNVMbBG5oGGTIrIj6kg9IBHdE5Fz8Ygi7dDQ0FallKdhwsx1zVt99QqAPIBOZr5Tr0GFQmGVaZoTGjYtIuui4teKo9SI6KqIaGgl5TjQdd2NhmF80LBREem2bftNPVCUWryGMe0xETlDnud1A2iybbujxjuHAQzEaxQBiajdsqxSjV5baYyGh4c3hGH4UUR2R03wff+uYRgPa9sfs01Om1TvVe+Ph2G4M/oBNwBsZOb2//kBjuMkUqmUC+AtM/dWYI7jNKbT6ZKIvLcsq4uIZDGonnHNzc39IrLZNM1sJpMJ5ywxMjKyenZ2tkBEvxKJRGdLS8v3hYBBEGwpl8t9RKREpD1ywjx/OY7TkEqleojonIi8APBCKfUlmUz+IKKV5XJ5f3WesYjcnJqa6m1ra1PRowtN2iYiOk5EhwDsAdAIYFpPWgAvwzB83traOhmP/B+Al3B/w3iTlgAAAABJRU5ErkJggg=="/></g></g></svg>
+                          </a>
+                       </div>
+
+                     </div>
                      <!-- end meal-passenger -->
+
+                     <!-- end baggage-passenger -->
 
                    </div>
                    <!-- END passenger -->
@@ -196,48 +216,48 @@
         <!-- baggage-select -->
         <div class="baggage-select">
 
-        <div ng-repeat="(routePartNum, routePart) in vm.service.routeParts"
-             ng-if="routePartNum == vm.selectedRoutePartNum">
+          <div ng-repeat="(routePartNum, routePart) in vm.service.routeParts"
+               ng-if="routePartNum == vm.selectedRoutePartNum">
 
-          <div ng-repeat="(subgroupNum, subgroup) in vm.service.subgroups"
-               ng-if="subgroup.type == 'COUNTABLE_MULTIPLE_SELECT'">
+            <div ng-repeat="(subgroupNum, subgroup) in vm.service.subgroups"
+                 ng-if="subgroup.type == 'COUNTABLE_MULTIPLE_SELECT'">
 
-            <div class="baggage-select__title">
-              {{ subgroup.title }}
-            </div>
-
-            <!-- baggage-select__list -->
-            <div class="baggage-select__list">
-
-              <div class="baggage-select__item"
-                   ng-repeat="(itemNum, baggageItem) in vm.service.routeParts[vm.selectedRoutePartNum].availableExtraServicesByPassengersAndSubgroups[vm.selectedPassenger][subgroupNum]">
-
-                <span class="baggage-select__name">
-                  {{ baggageItem.title }}
-                </span>
-                <service-picker count="baggageItem.alreadySelectedCount"
-                    limit="baggageItem.limit"
-                    locked="vm.locked"
-                    on-increase="vm.baggageCountChangeHandler(subgroupNum, baggageItem, +1, vm.selectedPassenger, vm.selectedRoutePartNum)"
-                    on-decrease="vm.baggageCountChangeHandler(subgroupNum, baggageItem, -1, vm.selectedPassenger, vm.selectedRoutePartNum)">
-                </service-picker>
-                <span class="baggage-select__price"
-                      ng-bind-html=" { value: baggageItem.price, currency: baggageItem.currency} | price"
-                      ng-if="baggageItem.price">
-                </span>
-                <span class="baggage-select__price"
-                      ng-bind-html="{ value: baggageItem.totalPrice, currency: baggageItem.currency} | price"
-                      ng-if="baggageItem.totalPrice">
-                </span>
-
+              <div class="baggage-select__title">
+                {{ subgroup.title }}
               </div>
 
+              <!-- baggage-select__list -->
+              <div class="baggage-select__list">
+
+                <div class="baggage-select__item"
+                     ng-repeat="(itemNum, baggageItem) in vm.service.routeParts[vm.selectedRoutePartNum].availableExtraServicesByPassengersAndSubgroups[vm.selectedPassenger][subgroupNum]">
+
+                  <span class="baggage-select__name">
+                    {{ baggageItem.title }}
+                  </span>
+                  <service-picker count="baggageItem.alreadySelectedCount"
+                      limit="baggageItem.limit"
+                      locked="vm.locked"
+                      on-increase="vm.baggageCountChangeHandler(subgroupNum, baggageItem, +1, vm.selectedPassenger, vm.selectedRoutePartNum)"
+                      on-decrease="vm.baggageCountChangeHandler(subgroupNum, baggageItem, -1, vm.selectedPassenger, vm.selectedRoutePartNum)">
+                  </service-picker>
+                  <span class="baggage-select__price"
+                        ng-bind-html=" { value: baggageItem.price, currency: baggageItem.currency} | price"
+                        ng-if="baggageItem.price">
+                  </span>
+                  <span class="baggage-select__price"
+                        ng-bind-html="{ value: baggageItem.totalPrice, currency: baggageItem.currency} | price"
+                        ng-if="baggageItem.totalPrice">
+                  </span>
+
+                </div>
+
+              </div>
+              <!-- END baggage-select__list -->
+
             </div>
-            <!-- END baggage-select__list -->
 
           </div>
-
-        </div>
 
         </div>
         <!-- END baggage-select -->
