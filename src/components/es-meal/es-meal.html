@@ -182,8 +182,8 @@
                      </div>
                      <!-- end name-passenger -->
 
-                     <!-- meal-passenger -->
-                     <div class="passenger__meal"
+                     <!-- passenger__select-item -->
+                     <div class="passenger__select-item"
                           ng-repeat="(indexMealSelect, itemMealSelect) in mealSelect track by $index"
                           ng-if="mealSelect">
 
@@ -200,20 +200,20 @@
                        </div>
 
                      </div>
-                     <!-- end meal-passenger -->
+                     <!-- end passenger__select-item -->
 
-                     <!-- meal-passenger -->
-                     <div class="meal-passenger"
+                     <!-- passenger__select-item -->
+                     <div class="passenger__select-item"
                           ng-if="vm.orderInfo.groupedIssuedExtraServices.meal[passengerNum][flightNum].length"
                           ng-repeat="issuedMealItem in vm.orderInfo.groupedIssuedExtraServices.meal[passengerNum][flightNum]">
                        <span>
                          {{ 'web.extraServices.' + issuedMealItem.rfisc + '.' + issuedMealItem.serviceType +'.ALL.text' | aliasDynamic }}
                        </span>
-                       <span class="passengersTable__segment-passengers__passenger__meals__issued">
+                       <span>
                          {{ 'web.serviceStatus.issued' | aliasStatic }}
                        </span>
                      </div>
-                     <!-- END meal-passenger -->
+                     <!-- END passenger__select-item -->
                    </div>
                    <!-- END passenger -->
 
