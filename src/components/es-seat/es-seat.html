@@ -166,7 +166,7 @@
             <!-- passengers -->
             <div class="passengers">
               <div class="passengers__title">
-                Пассажиры
+                {{ 'web.extraServices.seat.passengersTitle' | aliasStatic }}
               </div>
               <div ng-repeat="(flightNum, flight) in vm.orderInfo.plainFlights"
                    ng-if="vm.service.availableBySegments[flightNum] && vm.selectedFlight == flightNum">
@@ -193,7 +193,7 @@
                            </div>
                            <div class="passenger__seat-text_none"
                                 ng-if="!vm.service.selectedSeatsByPassengerSegments[passengerNum][flightNum]">
-                             Место не выбрано
+                             {{ 'web.extraServices.seat.placeNotSelected' | aliasStatic}}
                            </div>
                          </div>
                          <!-- end name-passenger -->
@@ -211,16 +211,9 @@
               <!-- infoSeat -->
               <div class="infoSeat" ng-if="!vm.loadingSeatMap && vm.seatMap">
                 <div class="infoSeat__title">
-                  Категории мест
+                  {{ 'web.extraServices.seat.infoSeatTitle' | aliasStatic }}
                 </div>
                 <div class="infoSeat__list">
-
-                  <div class="infoSeat__item">
-                    <span class="infoSeat__lable infoSeat__lable_free"></span>
-                    <span class="infoSeat__text">
-                      {{ 'web.extraServices.seat.free' | aliasStatic}}
-                    </span>
-                  </div>
 
                   <div class="infoSeat__item">
                     <span class="infoSeat__lable infoSeat__lable_selected"></span>
@@ -246,7 +239,7 @@
                   <div class="infoSeat__item">
                     <span class="infoSeat__lable infoSeat__lable_exit"></span>
                     <span>
-                      Место у выхода
+                      {{ 'web.extraServices.seat.exit' | aliasStatic}}
                     </span>
                   </div>
 
@@ -286,31 +279,11 @@
             </div>
             <!-- END seatSelect -->
           </div>
-          <div class="seatBlock__footer">
-            <p>
-              Обращаем внимание!
-            </p>
-            <p>
-              Авиакомпания оставляет за собой право замены воздушного судна.
-            </p>
-            <p>
-              В случае замены воздушного судна, пассажирам, оплатившим услугу &#171;выбор места&#187; будут предоставлены места в самолете,
-              аналогичные по цене и комфортности с сохранением следующих параметров:
-            </p>
-            <ul>
-              <li>Стоимость услуги;</li>
-              <li>Расположение места относительно окна/прохода;</li>
-              <li>Совместная рассадка, если таковая была выбрана изначально;</li>
-              <li>Размещение в первом ряду салона, если таковое было выбрано изначально.</li>
-            </ul>
-            <p>
-              <a href="" class="seatBlock__link">Подробные условия предоставления услуги</a>
-            </p>
-          </div>
+          <div class="seatBlock__footer" ng-bind-html=" 'web.extraServices.seat.seatBlockFooter' | aliasStatic"></div>
         </div>
       </div>
   </div>
- 
+
   <!-- END drop -->
 </div>
 <!-- item__i -->
