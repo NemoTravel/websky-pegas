@@ -241,7 +241,6 @@
                 {{ 'web.meal.subgroup.' | aliasWithPrefix:subgroupCode }}
               </span>
             </div>
-
           </div>
           <!-- END group -->
 
@@ -267,18 +266,27 @@
 
                     <p class="price" ng-bind-html="{ value: mealItem.price, currency: mealItem.currency } | price"></p>
 
-                    <a href=""
-                       class="btn"
+                    <a href="" class="btn"
                        ng-click="vm.mealCountChangeHandler(subgroupNum, mealItem, +1)"
-                       ng-class="{ selected: mealItem.alreadySelectedCount > 0}">
+                       ng-if="mealItem.alreadySelectedCount < 1">
 
-                      <span class="not-selected" ng-if="mealItem.alreadySelectedCount === 0">
-                        {{ 'web.extraServices.meal.addServices' | aliasStatic }}
-                      </span>
+                       {{ 'web.extraServices.meal.selectItem' | aliasStatic }}
 
-                      <span class="selected" ng-if="mealItem.alreadySelectedCount > 0">
-                        {{ 'web.extraServices.meal.addedOrder' | aliasStatic }}
-                      </span>
+                    </a>
+
+                    <a href="" class="btn"
+                       ng-click="vm.mealCountChangeHandler(subgroupNum, mealItem, +1)"
+                       ng-if="mealItem.alreadySelectedCount > 0 && mealItem.alreadySelectedCount !== mealItem.limit">
+
+                       {{ 'web.extraServices.meal.addServices' | aliasStatic }}
+
+                    </a>
+
+                    <a href="" class="btn"
+                       ng-class="{selected: mealItem.alreadySelectedCount == mealItem.limit}"
+                       ng-if="mealItem.alreadySelectedCount == mealItem.limit">
+
+                        {{ 'web.extraServices.meal.isSelectItemButton' | aliasStatic }}
 
                     </a>
 
