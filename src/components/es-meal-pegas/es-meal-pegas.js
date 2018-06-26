@@ -14,6 +14,7 @@ function MealControllerPegas($scope, $element, backend, utils) {
         passengersTableContainer = $element.find('div.passengersTableContainer');
 
     vm.switchService = switchService;
+    vm.resetService = resetService;
     vm.selectFlightPassenger = selectFlightPassenger;
     vm.selectFirstAvailablePassengerFlight = selectFirstAvailablePassengerFlight;
     vm.mealCountChangeHandler = mealCountChangeHandler;
@@ -62,6 +63,12 @@ function MealControllerPegas($scope, $element, backend, utils) {
                 });
             }
         }
+    }
+
+    function resetService() {
+      backend.removeExtraService({
+          code: 'meal'
+      });
     }
 
     function selectFlightPassenger(flightNum, passengerNum) {
