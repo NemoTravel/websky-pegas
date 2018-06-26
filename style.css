@@ -157,15 +157,15 @@ liteGreen - #84cd2b
     transform: rotate(180deg);
 }
 
-.checkoutServices__i .list>.item .top .toggle span.hide {
+.checkoutServices__i .list > .item .top .toggle span.hide {
 	display: none;
 }
 
-.checkoutServices__i .list>.item .top .toggle.open span.show {
+.checkoutServices__i .list > .item .top .toggle.open span.show {
 	display: none;
 }
 
-.checkoutServices__i .list>.item .top .toggle.open span.hide {
+.checkoutServices__i .list > .item .top .toggle.open span.hide {
 	display: inline-block;
 }
 
@@ -384,7 +384,7 @@ liteGreen - #84cd2b
     left: 30px;
 }
 
-.passenger__meal {
+.passenger__select-item {
 	margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
@@ -444,6 +444,7 @@ liteGreen - #84cd2b
 
 .group__icon {
 	margin-bottom: 15px;
+    display: inline-block;
 }
 
 /* icons */
@@ -452,14 +453,19 @@ liteGreen - #84cd2b
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAClklEQVRIS62VT0hUURjFz3d9E9EUQZgLoRYRWRSKRZuwMIygoE3SEGQzV10MRE21DI2gQIKCoLDVMHNHaYShTbt2Q38poqSFQVRWs4kiKIcQRb0n7mtGJmVycubtLu8753e/f+8JavjE4/F1nuddBPBeaz3orKWG/jDGDAC44Dyttbt6enpe1RowAuB44dIfRSReM8DQ0FDQWvsJQH1JVeZqAshms14ul0uQPPmXuUiiKoBraiAQOALgPMkWZ07ytud5N7q6uj6ICMsCjDHbAYQA7APQUGwegN0i0kRyB4CtCwblktb6cungLAKkUqlmktcAHCwJvA9gE4At/5i6b/l8fmMsFpsuC0ilUmdJXgfgLWN8B7XWpxfq5jMwxlwB0L8MY19CslNEvmutHy7KwBjTCeDucs39jRVpIfnMWtvmFqzoJZlMZvXk5OQ4gPVVAKaVUm3W2hcAnmit2+YByWTyjIjcrMLcSUcBuMFIu4NSqj0cDj/wMzPGZAG0VwMQkT6STQDChXLdikQisSIgD2BNFYA3JE+IyHMAKwo+j7TWbn/8DFiBeRTAMQAHSmNJ3qurq+u31mYAbCt5905r7e+MA7jFKJLLscZJnlNKfQbQCmCO5CjJnSJyFUDjAuGY1tptug/IAdhQQRYu5AeAtwDqALhPyaoyusda670+IJlMDorIqQoBFYWRHOju7u7zAYXfnKthR0XqJYJE5OnU1NThaDQ64QOK8cPDw5tnZ2dblVKNJNeSVJUCRWSC5FcRea21HivVSSKR2KOUOkSymlEt9fxprR3p7e11vfJ7cFRE7gBYWemNl4ibEJH9kUjEbfefEqXT6fqZmZkOa22ziDSQDPwPTESmSX4B8DIYDGZDodCvov43LET7zwvR/CkAAAAASUVORK5CYII=') no-repeat center center;
     width: 24px;
     height: 24px;
-    display: inline-block;
+
 }
 
 .group__icon_meat {
 		background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAASCAYAAACuLnWgAAABe0lEQVRIS7XUsUrDQBgH8P+XQwpBcVcUiiC+gjjUuR3FuPUSIgQs6As4+gIKFQKG3nUz4mad7SC+gggiKjorSqFIcpJgSq1VDptmCCH5vv/v7nIJQfMIw5B1Op0jABUALdM0Ny3LinTaSacoqWk0GmUiamX1SqmK4zjnOv3aiBDCAnDcF7ph23Y4MiKlXIzj2COidQBzQwIflVInhmH4nPOb38ChMwmCYIoxtgegBoBpjDZ5N/UoinZd130brP+BNJvNYhzHyVovaYQPllwbhlGuVqt3/Q++IUEQzDDGrgDM/wPIWh6iKFp2Xfc5u9FDvrZoG8DKCEDWemmaZinb4j1ESrmllKrnAKQRRFTjnB+m18nJ9/2JQqGQrONsXgiAp263W/Q87yNFBj+0vKDsg00RIcQ+gO28wvtyDmzb3slmckFEpbwRpVTbcZzVFJFSngJYyBsBcMs5X9P+d40yABJCnCmlJkcJ+auXiN4T5AXA9LgQAK8Jcj9u5BPEz4E4AvGguwAAAABJRU5ErkJggg==') no-repeat center center;
     width: 25px;
     height: 24px;
-    display: inline-block;
+}
+
+.group__icon_special {
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAATCAYAAAB7u5a2AAACR0lEQVQ4T62US2gTURSG/zPTRLTqRlDjo1tBBBEFKd248lWwiFBQaCc3CMGVoAs3BXEvouhGI5k7CT4I6CK60FXoQizqorjztQhdRJQWFDpNlNxfbk1KO50U2ubu5jy+/5xzzx0JgsADMABgN8kekjURGReRsud501jHEa31LIBNMYxZknd6e3tvDA8P/1mLhvi+/0pETqyQ/N4YM5jJZH6uVsDC0yLiRxK/A9i5yPax0Wj0Z7PZ0NoKhUIfSUXyAMmEiMwYY65FC5BSqZQMw/ALgL5FsN8AnorIHpKnrZ3kLaXUVa31GQBPoqMUkX2e531eXKTYD631cQCvY9p+RvK5iNwFsNUYc9BxnA8ANrZimwBckuNKqWPR/Hm4PUEQXCZ5O0ag0mw2L7mua4UeisgVKyQib0ie+t8UB5RSEx3hrQ7OAbgPYFsk8IExZkxE7P3M2LUFcL0FvqiU0nGXvVB521kqlTaHYThkL6ptcxyH9Xr9ca1Wa6ZSqS3JZPJsyzeplJrstEUL8FwutyORSNjA9jxXu3nR+Oko3K5gt059AU5SgiCYA7ChG3QR+bRk5lrrlwAGuwEHcG8J3Pf9CyLyqBtwkv1L4JVKpadarb4DcGidAuV0Oj20bBXz+fx+x3He2oeyRoEpx3GOjI6O/lgGt8BCoXDUGFMGsH2VAt9c1z05MjLy1ebFwq2jWCymjDE3SZ5fKa4l/te+7EajMZbNZn+1C+oIbwfk8/m9ruvaF3sYwC6S86sqInMiMmWMmSD5Iu5//w8BKvHr4XpnpAAAAABJRU5ErkJggg==') no-repeat center center;
+    width: 25px;
+    height: 24px;
 }
 
 /* end icons */
@@ -732,6 +738,10 @@ liteGreen - #84cd2b
     margin-bottom: 10px;
 }
 
+.baggage-select__title-small {
+	font-size: 14px;
+}
+
 .baggage-select__item {
 	background: #f3f3f3;
     padding: 15px;
@@ -807,5 +817,156 @@ liteGreen - #84cd2b
 }
 
 /* END BAGGAGE */
+
+/* Новыя схема самолета */
+
+.deck-label {
+	display: none;
+}
+
+.seatMap .planeBody__i {
+	width: auto;
+}
+
+.seatMap .planeBody__i table tr td div.seat-prop-exit:before {
+	background-repeat: no-repeat;
+    background-position: 100px 0;
+}
+.seatMap .seat.seat_disabled,
+.infoSeat__lable_disabled {
+    background: transparent;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.56 15" fill="#949494"><defs></defs><g><g><rect class="cls-1" x="15.71" y="5" width="1.85" height="10"/><rect class="cls-1" y="5" width="1.85" height="10"/><rect class="cls-1" x="7.69" y="7.9" width="2.18" height="12.02" transform="translate(22.69 5.13) rotate(90)"/><rect class="cls-1" x="2.78" y="-0.01" width="12" height="12.02" transform="translate(14.78 -2.78) rotate(90)"/></g></g></svg>');
+    background-repeat: no-repeat;
+}
+
+.seatSelect .seat.active,
+.infoSeat__lable_selected {
+    position: relative;
+    background: transparent;
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.56 15" fill="#2c9f86"><defs></defs><g><g><rect class="cls-1" x="15.71" y="5" width="1.85" height="10"/><rect class="cls-1" y="5" width="1.85" height="10"/><rect class="cls-1" x="7.69" y="7.9" width="2.18" height="12.02" transform="translate(22.69 5.13) rotate(90)"/><rect class="cls-1" x="2.78" y="-0.01" width="12" height="12.02" transform="translate(14.78 -2.78) rotate(90)"/></g></g></svg>');
+    background-repeat: no-repeat;
+}
+
+.seatSelect .seat.active:after,
+.seatSelect .seat.active:before,
+.infoSeat__lable_selected:after,
+.infoSeat__lable_selected:before {
+	content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #49ca0294;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.seatSelect .seat.active:after,
+.infoSeat__lable_selected:after {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 24" version="1.1" width="15px" height="12px" fill="#fff"><g><path d="M 22.566406 4.730469 L 20.773438 3.511719 C 20.277344 3.175781 19.597656 3.304688 19.265625 3.796875 L 10.476563 16.757813 L 6.4375 12.71875 C 6.015625 12.296875 5.328125 12.296875 4.90625 12.71875 L 3.371094 14.253906 C 2.949219 14.675781 2.949219 15.363281 3.371094 15.789063 L 9.582031 22 C 9.929688 22.347656 10.476563 22.613281 10.96875 22.613281 C 11.460938 22.613281 11.957031 22.304688 12.277344 21.839844 L 22.855469 6.234375 C 23.191406 5.742188 23.0625 5.066406 22.566406 4.730469 Z"></path></g></svg>');
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translate(-6px, -6px);
+    width: 10px;
+    height: 10px;
+/*     z-index: 1; */
+}
+
+.seatMap .seat {
+	background: transparent;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.56 15" fill="#2c9f86"><defs></defs><g><g><rect class="cls-1" x="15.71" y="5" width="1.85" height="10"/><rect class="cls-1" y="5" width="1.85" height="10"/><rect class="cls-1" x="7.69" y="7.9" width="2.18" height="12.02" transform="translate(22.69 5.13) rotate(90)"/><rect class="cls-1" x="2.78" y="-0.01" width="12" height="12.02" transform="translate(14.78 -2.78) rotate(90)"/></g></g></svg>');
+    background-repeat: no-repeat;
+}
+
+.seatSelect .seatName {
+	z-index: 1;
+}
+
+/* Крылья */
+
+
+.seatMap .planeBody__i table tr.atWing td:first-child > div:before,
+.seatMap .planeBody__i table tr.atWing td:last-child > div:before{
+	display: none;
+}
+
+.seatMap .planeBody__i table tr.wingsStart td:first-child .seat:after {
+    left: -156px;
+    top: 80px;
+    width: 178px;
+    -webkit-transform: rotate(-62deg);
+    transform: rotate(-62deg);
+}
+
+.seatMap .planeBody__i table tr.wingsStart td:last-child .seat:after {
+    right: -156px;
+    top: 80px;
+    width: 178px;
+    -webkit-transform: rotate(62deg);
+    transform: rotate(62deg);
+}
+
+.seatMap .planeBody__i table tr.wingsEnd td:first-child .seat:after {
+    left: -101px;
+    top: 7px;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.seatMap .planeBody__i table tr.wingsEnd td:last-child .seat:after {
+    top: 7px;
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+}
+
+/* END крылья */
+
+/* END Новыя схема самолета */
+
+.invoiceTotal {
+	color: #fff;
+}
+
+.invoiceTotal .title {
+	color: #fff;
+}
+
+.invoiceTotal .total td {
+	color: #fff;
+}
+
+.invoiceTotal .total td:first-child {
+	color: #fff;
+}
+
+.invoiceTotal .total p a {
+	color: #fff;
+    border-bottom: #fff;
+}
+
+.totalTable {
+	margin: 0;
+}
+
+.checkoutServices {
+	margin-top: 40px;
+}
+
+.checkoutServices__i>.title {
+	color: #fff;
+}
+
+.btn.btn_back {
+	color: #fff;
+    border-color: #fff;
+    border-radius: 5px;
+}
+
+.payMethods .title,
+.radioBtn label,
+.payMethods p {
+	color: #fff;
+}
 
 /* END DESKTOP */
