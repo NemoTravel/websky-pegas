@@ -223,6 +223,19 @@
 
               <div class="baggage-select__title">
                 {{ subgroup.title }}
+                <span class="baggage-select__title-small"
+                      ng-repeat="freeBaggageItem in vm.service.routeParts[vm.selectedRoutePartNum].flightsInfo.freeBaggage"
+                      ng-if="freeBaggageItem.passengerCode == vm.orderInfo.passengers[vm.selectedPassenger].categoryCode">
+                     <span>
+                       {{ 'web.extraServices.baggage.freeLugg' | aliasStatic}}
+                     </span>
+                     <span>
+                       {{ freeBaggageItem.luggNorm }} {{ 'web.search.priceDetail.label.luggDescMsr.' | aliasWithPrefix:freeBaggageItem.luggNormMsr }}
+                     </span>
+                     <span>
+                       {{ 'web.extraServices.baggage.freeLuggPrice' | aliasStatic}}
+                     </span>
+                </span>
               </div>
 
               <!-- baggage-select__list -->
