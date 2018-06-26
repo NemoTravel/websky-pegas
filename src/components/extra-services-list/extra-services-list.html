@@ -2,7 +2,7 @@
 <div class="list">
 
     <div ng-repeat="esCode in vm.list track by $index" ng-if="vm.es[esCode]" class="item dropWrapper item-{{esCode}}" ng-class="{ active: vm.es[esCode].active }">
-        <es-seat ng-if="esCode == 'seat'" service="vm.es.seat" locked="vm.locked"></es-seat>
+        <es-seat-pegas ng-if="esCode == 'seat'" service="vm.es.seat" locked="vm.locked"></es-seat-pegas>
         <es-baggage ng-if="esCode == 'baggage'" service="vm.es.baggage" locked="vm.locked"></es-baggage>
         <es-meal-pegas ng-if="esCode == 'meal'" service="vm.es.meal" locked="vm.locked"></es-meal-pegas>
         <es-insurance ng-if="esCode == 'insurance'" service="vm.es.insurance" locked="vm.locked"></es-insurance>
